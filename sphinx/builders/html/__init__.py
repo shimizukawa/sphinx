@@ -380,7 +380,7 @@ class StandaloneHTMLBuilder(Builder):
                 if srcmtime > targetmtime:
                     logger.debug('[build target] targetname %r(%s), template(%s), docname %r(%s)',
                                  targetname,
-                                 targetmtime,
+                                 datetime.utcfromtimestamp(targetmtime),
                                  datetime.utcfromtimestamp(template_mtime),
                                  docname,
                                  datetime.utcfromtimestamp(path.getmtime(self.env.doc2path(docname))),
