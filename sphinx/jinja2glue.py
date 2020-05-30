@@ -195,6 +195,7 @@ class BuiltinTemplateLoader(TemplateBridge, BaseLoader):
         return self.environment.from_string(source).render(context)
 
     def newest_template_mtime(self) -> float:
+        return 0  # debug to avoid re-build by template updated
         return max(mtimes_of_files(self.pathchain, '.html'))
 
     # Loader interface
