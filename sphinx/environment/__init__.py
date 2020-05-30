@@ -13,6 +13,7 @@ import pickle
 import warnings
 from collections import defaultdict
 from copy import copy
+from datetime import datetime
 from os import path
 from typing import Any, Callable, Dict, Generator, Iterator, List, Set, Tuple, Union
 from typing import cast
@@ -424,6 +425,10 @@ class BuildEnvironment:
                 mtime = self.all_docs[docname]
                 newmtime = path.getmtime(self.doc2path(docname))
                 if newmtime > mtime:
+                    logger.debug('outdated: %r %s -> %s',
+                                 docname,
+                                 datetime.utcfromtimestamp(mtime),
+                                 datetime.utcfromtimestamp(newmtime))
                     changed.add(docname)
                     continue
                 # finally, check the mtime of dependencies
